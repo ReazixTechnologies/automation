@@ -1,0 +1,91 @@
+@import "../styles/brand.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-display tracking-tight;
+  }
+
+  section[id] {
+    scroll-margin-top: var(--nav-height);
+  }
+
+  :focus-visible {
+    @apply outline-none ring-2 ring-ring ring-offset-2 ring-offset-background;
+  }
+}
+
+@layer components {
+  .section-y {
+    @apply py-16 md:py-24;
+  }
+
+  .glass {
+    @apply border border-black/5 bg-white/75 shadow-glass backdrop-blur-md dark:border-copper-500/20 dark:bg-ink-800/70;
+  }
+
+  .text-gradient-ig {
+    @apply bg-ig-gradient bg-clip-text text-transparent;
+  }
+
+  /* WhatsApp-style doodle wallpaper, pure inline SVG. */
+  .wa-wallpaper {
+    background-color: #ece5dd;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120' fill='none' stroke='%23d6cbbd' stroke-width='1.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M14 18h16v12H14zM18 18v-4h8v4'/%3E%3Ccircle cx='72' cy='20' r='7'/%3E%3Cpath d='M68 20l3 3 5-6'/%3E%3Cpath d='M100 12l8 8-8 8-8-8z'/%3E%3Cpath d='M20 62c0-6 10-6 10 0s-10 10-10 10-10-4-10-10 10-6 10 0'/%3E%3Cpath d='M54 56l10-8 10 8v12H54z'/%3E%3Cpath d='M61 68v-6h6v6'/%3E%3Cpath d='M96 58h14v10H100l-4 4z'/%3E%3Ccircle cx='18' cy='102' r='2'/%3E%3Ccircle cx='28' cy='96' r='1.5'/%3E%3Cpath d='M48 98a8 8 0 1 0 16 0'/%3E%3Cpath d='M86 92l6 14 6-14'/%3E%3Cpath d='M106 100h8M110 96v8'/%3E%3C/svg%3E");
+    background-size: 120px 120px;
+  }
+
+  .dark .wa-wallpaper:not(.force-light *):not(.force-light) {
+    background-color: #0b141a;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120' fill='none' stroke='%231a252c' stroke-width='1.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M14 18h16v12H14zM18 18v-4h8v4'/%3E%3Ccircle cx='72' cy='20' r='7'/%3E%3Cpath d='M68 20l3 3 5-6'/%3E%3Cpath d='M100 12l8 8-8 8-8-8z'/%3E%3Cpath d='M20 62c0-6 10-6 10 0s-10 10-10 10-10-4-10-10 10-6 10 0'/%3E%3Cpath d='M54 56l10-8 10 8v12H54z'/%3E%3Cpath d='M61 68v-6h6v6'/%3E%3Cpath d='M96 58h14v10H100l-4 4z'/%3E%3Ccircle cx='18' cy='102' r='2'/%3E%3Ccircle cx='28' cy='96' r='1.5'/%3E%3Cpath d='M48 98a8 8 0 1 0 16 0'/%3E%3Cpath d='M86 92l6 14 6-14'/%3E%3Cpath d='M106 100h8M110 96v8'/%3E%3C/svg%3E");
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Animated dashed connectors in the automations flow preview. */
+@keyframes flow-dash {
+  to {
+    stroke-dashoffset: -14;
+  }
+}
+
+/* usePauseOffscreen(): stop decorative CSS animations that aren't visible. */
+[data-paused="true"],
+[data-paused="true"] * {
+  animation-play-state: paused !important;
+}
+
+/* /demo pages: no site grain; the chat owns the whole screen. */
+body.demo-body {
+  background-image: none;
+}

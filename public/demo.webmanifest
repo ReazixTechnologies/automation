@@ -1,0 +1,15 @@
+{
+  "name": "Skyline Heights Concierge — demo by Reazix",
+  "short_name": "Concierge",
+  "description": "AI property concierge demo on WhatsApp and Instagram, built by Reazix.",
+  "start_url": "/demo",
+  "scope": "/demo",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0B141A",
+  "theme_color": "#075E54",
+  "icons": [
+    { "src": "/brand/apple-touch-icon.png", "sizes": "180x180", "type": "image/png" },
+    { "src": "/brand/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" }
+  ]
+}

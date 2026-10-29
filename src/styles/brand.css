@@ -1,0 +1,99 @@
+/*
+ * Reazix brand layer — see BRAND.md.
+ * Dark is the default theme (`.dark` on <html>); light is optional.
+ * Semantic colors are RGB channels so Tailwind can apply alpha.
+ */
+
+@layer base {
+  :root {
+    /* Raw brand palette */
+    --bg-base: #070707;
+    --bg-elevated: #111111;
+    --bg-card: #161412;
+    --border-subtle: rgba(255, 255, 255, 0.08);
+    --copper-300: #ffb27a;
+    --copper-400: #f58a4b;
+    --copper-500: #e8692e;
+    --copper-600: #c4501f;
+    --copper-700: #8f3714;
+    --cream: #f3e9dd;
+    --text-muted: #a39a90;
+    --glow-copper: 0 0 24px rgba(232, 105, 46, 0.35);
+    --gradient-copper: linear-gradient(135deg, #ffb27a, #e8692e 50%, #c4501f);
+
+    /* Light theme (optional): cream background, ink text, same copper */
+    --background: 247 241 234; /* #F7F1EA */
+    --foreground: 20 16 12; /* ink */
+    --card: 255 251 246;
+    --muted: 239 230 219;
+    --muted-foreground: 107 97 89; /* #6B6159, AA on cream */
+    --border: 227 215 201;
+    --ring: 196 80 31; /* copper-600 */
+    --nav-height: 4.5rem;
+    color-scheme: light;
+  }
+
+  .dark {
+    --background: 7 7 7; /* --bg-base */
+    --foreground: 243 233 221; /* --cream */
+    --card: 22 20 18; /* --bg-card */
+    --muted: 17 17 17; /* --bg-elevated */
+    --muted-foreground: 163 154 144; /* --text-muted */
+    --border: 33 31 29; /* white 8% over the dark surfaces */
+    --ring: 245 138 75; /* copper-400 */
+    color-scheme: dark;
+  }
+
+  /*
+   * Phone screens always show the real (light) WhatsApp / Instagram skins, even
+   * on the dark site. Tailwind's dark: variant skips everything inside here.
+   */
+  .force-light {
+    --background: 255 255 255;
+    --foreground: 17 27 33;
+    --card: 255 255 255;
+    --muted: 247 248 246;
+    --muted-foreground: 84 101 111;
+    --border: 226 232 228;
+    color-scheme: light;
+  }
+}
+
+@layer components {
+  /* Signature gradient on text: one key word per headline. */
+  .text-gradient-copper {
+    background-image: var(--gradient-copper);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .dark .text-gradient-copper {
+    text-shadow: none;
+    filter: drop-shadow(0 0 18px rgba(232, 105, 46, 0.35));
+  }
+  /* In light mode the gradient's pale end is too light for text: use the deeper stops. */
+  :root:not(.dark) .text-gradient-copper {
+    background-image: linear-gradient(135deg, #c4501f, #8f3714);
+  }
+
+  .glow-copper-text {
+    text-shadow: 0 0 24px rgba(232, 105, 46, 0.35);
+  }
+
+  /* Eyebrows, labels, badges, nav items: echo "DIGITAL PRODUCT STUDIO". */
+  .eyebrow {
+    @apply text-xs font-medium uppercase tracking-eyebrow text-copper-700 dark:text-copper-300;
+  }
+
+  /* Thin glowing copper divider echoing the logo's light-stroke "R". */
+  .glow-divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(232, 105, 46, 0.7) 50%, transparent);
+    box-shadow: 0 0 12px rgba(232, 105, 46, 0.45);
+  }
+}
+
+/* Faint film grain over the whole page (pure SVG, no image request). */
+body {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.035 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
