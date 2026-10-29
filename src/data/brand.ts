@@ -6,11 +6,8 @@ export const brand = {
   descriptor: "Digital Product Studio",
   tagline: "Digital products that convert.",
   logo: {
-    /** The provided logo, unaltered (opaque black background). */
     original: "/brand/reazix-logo.png",
-    /** Same artwork with the empty padding trimmed (scripts/generate-brand-assets.mjs). */
     lockup: "/brand/reazix-logo-lockup.png",
-    /** Lockup with the black turned to transparency (identical over black) for dark surfaces. */
     lockupDark: "/brand/reazix-logo-lockup-dark.png",
     lockupSize: { width: 825, height: 412 },
     alt: "Reazix — Digital Product Studio",
